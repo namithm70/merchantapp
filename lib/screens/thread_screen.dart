@@ -280,7 +280,7 @@ class _ThreadScreenState extends State<ThreadScreen> {
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   labelText: 'Offer amount',
-                  prefixText: '\$',
+                  prefixText: '₹',
                 ),
               ),
               const SizedBox(height: 16),
@@ -327,7 +327,7 @@ class _ThreadScreenState extends State<ThreadScreen> {
     await MessagingService.instance.sendMessage(
       threadId: widget.threadId,
       sender: 'buyer',
-      body: 'Offer sent: \$${amount.toStringAsFixed(0)}',
+      body: 'Offer sent: ₹${amount.toStringAsFixed(0)}',
     );
     setState(() {});
   }
@@ -340,7 +340,7 @@ class _ThreadScreenState extends State<ThreadScreen> {
     await MessagingService.instance.sendMessage(
       threadId: widget.threadId,
       sender: 'buyer',
-      body: 'Accepted offer: \$${offer.amount.toStringAsFixed(0)}',
+      body: 'Accepted offer: ₹${offer.amount.toStringAsFixed(0)}',
     );
     setState(() {});
   }
@@ -445,7 +445,7 @@ class _OfferSummary extends StatelessWidget {
           Text('Offer status', style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700)),
           const SizedBox(height: 6),
           Text(
-            '\$${offer!.amount.toStringAsFixed(0)} · ${status.name} · $expiryLabel',
+            '₹${offer!.amount.toStringAsFixed(0)} · ${status.name} · $expiryLabel',
             style: theme.textTheme.bodySmall?.copyWith(color: Colors.black54),
           ),
           const SizedBox(height: 10),

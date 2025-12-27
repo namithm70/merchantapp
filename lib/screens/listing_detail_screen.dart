@@ -74,7 +74,7 @@ class ListingDetailScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text('\$${listing.price.toStringAsFixed(0)}',
+                        Text('₹${listing.price.toStringAsFixed(0)}',
                             style: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w700)),
                         const SizedBox(height: 6),
                         Text('Condition: ${listing.condition}',
@@ -110,7 +110,7 @@ class ListingDetailScreen extends StatelessWidget {
                       Text('AI price guidance', style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
                       const SizedBox(height: 8),
                       Text(
-                        'Suggested range: \$${listing.aiPriceLow.toStringAsFixed(0)} - \$${listing.aiPriceHigh.toStringAsFixed(0)}',
+                        'Suggested range: ₹${listing.aiPriceLow.toStringAsFixed(0)} - ₹${listing.aiPriceHigh.toStringAsFixed(0)}',
                         style: theme.textTheme.bodyMedium,
                       ),
                       const SizedBox(height: 10),
@@ -209,7 +209,7 @@ class ListingDetailScreen extends StatelessWidget {
                   FutureBuilder<ShippingQuote>(
                     future: ShippingService.instance.fetchRates(
                       origin: listing.location,
-                      destination: 'Your city',
+                      destination: 'Kochi, Kerala',
                     ),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
@@ -255,7 +255,7 @@ class ListingDetailScreen extends StatelessWidget {
                                   children: [
                                     Text('${rate.carrier} · ${rate.eta}',
                                         style: theme.textTheme.bodySmall?.copyWith(color: Colors.black54)),
-                                    Text('\$${rate.cost.toStringAsFixed(2)}',
+                                    Text('₹${rate.cost.toStringAsFixed(2)}',
                                         style: theme.textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w600)),
                                   ],
                                 ),
@@ -397,7 +397,7 @@ class ListingDetailScreen extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   labelText: 'Offer amount',
-                  prefixText: '\$',
+                  prefixText: '₹',
                 ),
               ),
               const SizedBox(height: 16),

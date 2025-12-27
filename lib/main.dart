@@ -9,7 +9,10 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LocalStore.instance.init();
   await WishlistStore.instance.init();
-  await NotificationService.instance.init();
-  await MessagingService.instance.init();
   runApp(const MarketplaceApp());
+
+  Future(() async {
+    await NotificationService.instance.init();
+    await MessagingService.instance.init();
+  });
 }

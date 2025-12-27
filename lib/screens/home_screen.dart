@@ -255,12 +255,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   double _cardAspectRatioForColumns(int columns) {
     if (columns == 1) {
-      return 0.92;
+      return 1.18;
     }
     if (columns == 2) {
-      return 0.8;
+      return 0.95;
     }
-    return 0.75;
+    return 0.82;
   }
 
   List<Listing> _filteredListings() {

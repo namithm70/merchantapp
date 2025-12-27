@@ -249,7 +249,7 @@ class _SellScreenState extends State<SellScreen> {
                         TextFormField(
                           controller: _priceController,
                           keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(labelText: 'Price *', prefixText: '\$'),
+                          decoration: const InputDecoration(labelText: 'Price *', prefixText: '₹'),
                           validator: (value) {
                             final parsed = double.tryParse(value ?? '');
                             if (parsed == null || parsed <= 0) return 'Enter a valid price';
@@ -334,7 +334,7 @@ class _SellScreenState extends State<SellScreen> {
                                 style: theme.textTheme.bodySmall?.copyWith(color: Colors.black54))
                           else if (_pricing != null)
                             Text(
-                              'Based on comps, list between \$${_pricing!.low.toStringAsFixed(0)} - \$${_pricing!.high.toStringAsFixed(0)}.',
+                              'Based on comps, list between ₹${_pricing!.low.toStringAsFixed(0)} - ₹${_pricing!.high.toStringAsFixed(0)}.',
                               style: theme.textTheme.bodySmall?.copyWith(color: Colors.black54),
                             )
                           else

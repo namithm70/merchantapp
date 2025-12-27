@@ -181,7 +181,7 @@ class _BulkImportScreenState extends State<BulkImportScreen> {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 8),
                             child: Text(
-                              '${draft.title} · ${draft.category} · \$${draft.price?.toStringAsFixed(0)}',
+                              '${draft.title} · ${draft.category} · ₹${draft.price?.toStringAsFixed(0)}',
                               style: theme.textTheme.bodySmall?.copyWith(color: Colors.black54),
                             ),
                           );

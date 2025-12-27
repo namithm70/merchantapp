@@ -29,27 +29,46 @@ class MessagingService {
   }
 
   Future<void> _loadThreads() async {
-    final response = await http.get(Uri.parse('${AppConfig.apiBaseUrl}/threads'));
-    final data = jsonDecode(response.body) as List<dynamic>;
-    threads.value = data.map((item) => MessageThread.fromJson(item as Map<String, dynamic>)).toList();
+    try {
+      final response = await http
+          .get(Uri.parse('${AppConfig.apiBaseUrl}/threads'))
+          .timeout(const Duration(seconds: 3));
+      final data = jsonDecode(response.body) as List<dynamic>;
+      threads.value = data.map((item) => MessageThread.fromJson(item as Map<String, dynamic>)).toList();
+    } catch (_) {
+      threads.value = [];
+    }
   }
 
   Future<List<MessageEntry>> loadMessages(String threadId) async {
     if (_messages.containsKey(threadId)) {
       return _messages[threadId]!;
     }
-    final response = await http.get(Uri.parse('${AppConfig.apiBaseUrl}/threads/$threadId/messages'));
-    final data = jsonDecode(response.body) as List<dynamic>;
-    final list = data.map((item) => MessageEntry.fromJson(item as Map<String, dynamic>)).toList();
-    _messages[threadId] = list;
-    return list;
+    try {
+      final response = await http
+          .get(Uri.parse('${AppConfig.apiBaseUrl}/threads/$threadId/messages'))
+          .timeout(const Duration(seconds: 3));
+      final data = jsonDecode(response.body) as List<dynamic>;
+      final list = data.map((item) => MessageEntry.fromJson(item as Map<String, dynamic>)).toList();
+      _messages[threadId] = list;
+      return list;
+    } catch (_) {
+      _messages[threadId] = [];
+      return [];
+    }
   }
 
   void _connectSocket() {
-    _channel = WebSocketChannel.connect(Uri.parse(AppConfig.wsUrl));
-    _subscription = _channel!.stream.listen(_handleSocketEvent, onError: (_) {
+    try {
+      _channel = WebSocketChannel.connect(Uri.parse(AppConfig.wsUrl));
+      _subscription = _channel!.stream.listen(
+        _handleSocketEvent,
+        onError: (_) => _reconnect(),
+        onDone: _reconnect,
+      );
+    } catch (_) {
       _reconnect();
-    }, onDone: _reconnect);
+    }
   }
 
   void _reconnect() {

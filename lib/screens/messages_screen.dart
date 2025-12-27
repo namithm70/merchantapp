@@ -83,7 +83,7 @@ class MessagesScreen extends StatelessWidget {
                                       const SizedBox(height: 6),
                                       if (thread.offerState != null && thread.offerState!.status != OfferStatus.none)
                                         Text(
-                                          'Offer: \$${thread.offerState!.amount.toStringAsFixed(0)} · ${thread.offerState!.status.name}',
+                                          'Offer: ₹${thread.offerState!.amount.toStringAsFixed(0)} · ${thread.offerState!.status.name}',
                                           style: theme.textTheme.labelSmall?.copyWith(color: Colors.black54),
                                         ),
                                     ],

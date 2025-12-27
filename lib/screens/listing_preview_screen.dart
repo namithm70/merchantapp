@@ -64,7 +64,7 @@ class ListingPreviewScreen extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      draft.price == null ? '\$0' : '\$${draft.price!.toStringAsFixed(0)}',
+                      draft.price == null ? '₹0' : '₹${draft.price!.toStringAsFixed(0)}',
                       style: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w700),
                     ),
                     const SizedBox(width: 12),

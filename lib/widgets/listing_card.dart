@@ -65,7 +65,7 @@ class ListingCard extends StatelessWidget {
               const SizedBox(height: 10),
               Row(
                 children: [
-                  Text('\$${listing.price.toStringAsFixed(0)}',
+                  Text('₹${listing.price.toStringAsFixed(0)}',
                       style: textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700)),
                   const SizedBox(width: 10),
                   Container(

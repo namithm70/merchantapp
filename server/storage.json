@@ -1,0 +1,67 @@
+{
+  "threads": [
+    {
+      "id": "t-100",
+      "listingTitle": "Studio Monitor Pair",
+      "preview": "Would you take 395 if I pick up today?",
+      "unreadCount": 2,
+      "sellerName": "Nina Patel",
+      "lastMessageAt": "2024-08-01T12:00:00.000Z",
+      "blocked": false,
+      "reported": false,
+      "offerState": {
+        "amount": 395,
+        "status": "pending",
+        "expiresAt": "2024-08-02T12:00:00.000Z",
+        "lastUpdatedBy": "buyer"
+      }
+    },
+    {
+      "id": "t-101",
+      "listingTitle": "Analog Camera Kit",
+      "preview": "Tracking shows delivery tomorrow morning.",
+      "unreadCount": 0,
+      "sellerName": "Marta Diaz",
+      "lastMessageAt": "2024-08-01T10:00:00.000Z",
+      "blocked": false,
+      "reported": false,
+      "offerState": {
+        "amount": 510,
+        "status": "accepted",
+        "expiresAt": "2024-08-01T10:00:00.000Z",
+        "lastUpdatedBy": "seller"
+      }
+    }
+  ],
+  "messages": {
+    "t-100": [
+      {
+        "id": "m-100",
+        "threadId": "t-100",
+        "sender": "buyer",
+        "body": "Would you take 395 if I pick up today?",
+        "imagePath": null,
+        "sentAt": "2024-08-01T12:00:00.000Z"
+      }
+    ],
+    "t-101": [
+      {
+        "id": "m-101",
+        "threadId": "t-101",
+        "sender": "seller",
+        "body": "Tracking shows delivery tomorrow morning.",
+        "imagePath": null,
+        "sentAt": "2024-08-01T10:00:00.000Z"
+      }
+    ]
+  },
+  "wishlist": [],
+  "pricing": {
+    "Electronics": {"low": 380, "high": 440},
+    "Outdoor": {"low": 240, "high": 320},
+    "Fashion": {"low": 150, "high": 220},
+    "Home": {"low": 780, "high": 920},
+    "Auto": {"low": 300, "high": 380},
+    "Collectibles": {"low": 480, "high": 560}
+  }
+}

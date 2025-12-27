@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  postgres:
+  listings-db:
     image: postgres:16
     environment:
       POSTGRES_USER: marketplace
@@ -10,18 +10,133 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - listings_data:/var/lib/postgresql/data
+
+  messaging-db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: marketplace
+      POSTGRES_PASSWORD: marketplace
+      POSTGRES_DB: messaging
+    ports:
+      - "5433:5432"
+    volumes:
+      - messaging_data:/var/lib/postgresql/data
+
+  offers-db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: marketplace
+      POSTGRES_PASSWORD: marketplace
+      POSTGRES_DB: offers
+    ports:
+      - "5434:5432"
+    volumes:
+      - offers_data:/var/lib/postgresql/data
+
+  payments-db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: marketplace
+      POSTGRES_PASSWORD: marketplace
+      POSTGRES_DB: payments
+    ports:
+      - "5435:5432"
+    volumes:
+      - payments_data:/var/lib/postgresql/data
+
+  disputes-db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: marketplace
+      POSTGRES_PASSWORD: marketplace
+      POSTGRES_DB: disputes
+    ports:
+      - "5436:5432"
+    volumes:
+      - disputes_data:/var/lib/postgresql/data
+
+  notifications-db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: marketplace
+      POSTGRES_PASSWORD: marketplace
+      POSTGRES_DB: notifications
+    ports:
+      - "5437:5432"
+    volumes:
+      - notifications_data:/var/lib/postgresql/data
 
   listings:
     build:
       context: ./services/listings
     environment:
       PORT: 4001
-      DATABASE_URL: postgres://marketplace:marketplace@postgres:5432/listings
+      DATABASE_URL: postgres://marketplace:marketplace@listings-db:5432/listings
     depends_on:
-      - postgres
+      - listings-db
     ports:
       - "4001:4001"
 
+  messaging:
+    build:
+      context: ./services/messaging
+    environment:
+      PORT: 4002
+      DATABASE_URL: postgres://marketplace:marketplace@messaging-db:5432/messaging
+    depends_on:
+      - messaging-db
+    ports:
+      - "4002:4002"
+
+  offers:
+    build:
+      context: ./services/offers
+    environment:
+      PORT: 4003
+      DATABASE_URL: postgres://marketplace:marketplace@offers-db:5432/offers
+    depends_on:
+      - offers-db
+    ports:
+      - "4003:4003"
+
+  payments:
+    build:
+      context: ./services/payments
+    environment:
+      PORT: 4004
+      DATABASE_URL: postgres://marketplace:marketplace@payments-db:5432/payments
+    depends_on:
+      - payments-db
+    ports:
+      - "4004:4004"
+
+  disputes:
+    build:
+      context: ./services/disputes
+    environment:
+      PORT: 4005
+      DATABASE_URL: postgres://marketplace:marketplace@disputes-db:5432/disputes
+    depends_on:
+      - disputes-db
+    ports:
+      - "4005:4005"
+
+  notifications:
+    build:
+      context: ./services/notifications
+    environment:
+      PORT: 4006
+      DATABASE_URL: postgres://marketplace:marketplace@notifications-db:5432/notifications
+    depends_on:
+      - notifications-db
+    ports:
+      - "4006:4006"
+
 volumes:
-  pgdata:
+  listings_data:
+  messaging_data:
+  offers_data:
+  payments_data:
+  disputes_data:
+  notifications_data:
